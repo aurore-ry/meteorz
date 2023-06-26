@@ -25,14 +25,18 @@ export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => (
           <p>
             Temperature: <span id="temp">{weatherData.current.temp_c}°C</span>
           </p>
-          {/* <p>
+          <p>
             Temperature min:{" "}
-            <span id="temp_min">{weatherData.main.temp_min}°C</span>
+            <span id="temp_min">
+              {weatherData.forecast.forecastday[0].day.mintemp_c}°C
+            </span>
           </p>
           <p>
-            Temperature max:
-            <span id="temp_max"> {weatherData.main.temp_max}°C</span>
-          </p> */}
+            Temperature max:{" "}
+            <span id="temp_max">
+              {weatherData.forecast.forecastday[0].day.maxtemp_c}°C
+            </span>
+          </p>
         </div>
         <div className="sky">
           <p>Clouds: {weatherData.current.cloud}%</p>
@@ -41,21 +45,15 @@ export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => (
         </div>
       </div>
       <div className="sunrise_sunset">
-        {/* <p>
+        <p>
           Sunrise:
-          {weatherData.astro.sunrise}
-          "HH:mm"
-        </p> */}
-        {/* <p>
-          Sunset:{" "}
-          {format(
-            utcToZonedTime(
-              new Date(weatherData.astro.sunset * 1000),
-              Intl.DateTimeFormat().resolvedOptions().timeZone
-            ),
-            "HH:mm"
-          )}
-        </p> */}
+          {weatherData.forecast.forecastday[0].astro.sunrise}
+        </p>
+        <p>Sunset: {weatherData.forecast.forecastday[0].astro.sunset}</p>
+        <p>Moonrise: {weatherData.forecast.forecastday[0].astro.moonrise}</p>
+        <p>
+          Moon phase: {weatherData.forecast.forecastday[0].astro.moon_phase}
+        </p>
       </div>
     </div>
   </div>

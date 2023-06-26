@@ -15,7 +15,7 @@ export const Weather = () => {
       console.log("lat,long:", { lat, long });
 
       try {
-        const weatherEndpoint = `${Env.API_URL}/current.json?key=${Env.API_ID}&q=${lat},${long}`;
+        const weatherEndpoint = `${Env.API_URL}/forecast.json?key=${Env.API_ID}&q=${lat},${long}`;
 
         const res = await fetch(weatherEndpoint);
         const json = (await res.json()) as WeatherDTO;

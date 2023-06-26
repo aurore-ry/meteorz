@@ -21,4 +21,18 @@ export interface WeatherDTO {
     humidity: number;
     wind_kph: number;
   };
+  forecast: {
+    forecastday: {
+      astro: {
+        sunrise: string;
+        sunset: string;
+        moonrise: string;
+        moon_phase: string;
+      };
+      day: {
+        maxtemp_c: number;
+        mintemp_c: number;
+      };
+    }[];
+  };
 }
