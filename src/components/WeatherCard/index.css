@@ -1,0 +1,42 @@
+.mainDiv {
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+}
+.weatherContainer {
+  width: 600px;
+  background-color: rgb(231, 240, 249);
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(135, 135, 135, 0.805);
+}
+
+.header p {
+  color: rgb(241, 236, 228);
+}
+
+.row {
+  display: flex;
+  flex-direction: row nowrap;
+  justify-content: center;
+  gap: 14px;
+  flex: 1;
+}
+
+#temp {
+  color: green;
+}
+#temp_min {
+  color: blue;
+}
+#temp_max {
+  color: red;
+}
+.sunrise_sunset {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
