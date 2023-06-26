@@ -6,8 +6,8 @@ import { Env } from "../../Env";
 import { WeatherCard } from "../WeatherCard";
 
 export const Weather = () => {
-  const [city, setCity] = useState<null | WeatherDTO>(null);
-  const [searchMode, setSearchMode] = useState<boolean>(false);
+  // const [city, setCity] = useState<null | WeatherDTO>(null);
+  // const [searchMode, setSearchMode] = useState<boolean>(false);
   const [data, setData] = useState<null | WeatherDTO>(null);
 
   const fetchData = useCallback(
@@ -15,7 +15,7 @@ export const Weather = () => {
       console.log("lat,long:", { lat, long });
 
       try {
-        const weatherEndpoint = `${Env.API_URL}/weather?lat=${lat}&lon=${long}&units=metric&appid=${Env.API_ID}`;
+        const weatherEndpoint = `${Env.API_URL}/current.json?key=${Env.API_ID}&q=${lat},${long}`;
 
         const res = await fetch(weatherEndpoint);
         const json = (await res.json()) as WeatherDTO;

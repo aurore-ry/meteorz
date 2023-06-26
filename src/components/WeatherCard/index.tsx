@@ -18,49 +18,44 @@ export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => (
   <div className="mainDiv">
     <div className="weatherContainer">
       <div className="header">
-        <p>{weatherData.name}</p>
+        <p>{weatherData.location.name}</p>
       </div>
       <div className="row">
         <div className="temperature">
           <p>
-            Temperature: <span id="temp">{weatherData.main.temp}°C</span>
+            Temperature: <span id="temp">{weatherData.current.temp_c}°C</span>
           </p>
-          <p>
+          {/* <p>
             Temperature min:{" "}
             <span id="temp_min">{weatherData.main.temp_min}°C</span>
           </p>
           <p>
             Temperature max:
             <span id="temp_max"> {weatherData.main.temp_max}°C</span>
-          </p>
+          </p> */}
         </div>
         <div className="sky">
-          <p>Clouds: {weatherData.clouds.all}%</p>
-          <p>Wind: {weatherData.wind.speed}Km/h</p>
-          <p>Humidity: {weatherData.main.humidity}%</p>
+          <p>Clouds: {weatherData.current.cloud}%</p>
+          <p>Wind: {weatherData.current.wind_kph}Km/h</p>
+          <p>Humidity: {weatherData.current.humidity}%</p>
         </div>
       </div>
       <div className="sunrise_sunset">
-        <p>
-          Sunrise:{" "}
-          {format(
-            utcToZonedTime(
-              new Date(weatherData.sys.sunrise * 1000),
-              Intl.DateTimeFormat().resolvedOptions().timeZone
-            ),
-            "HH:mm"
-          )}
-        </p>
-        <p>
+        {/* <p>
+          Sunrise:
+          {weatherData.astro.sunrise}
+          "HH:mm"
+        </p> */}
+        {/* <p>
           Sunset:{" "}
           {format(
             utcToZonedTime(
-              new Date(weatherData.sys.sunset * 1000),
+              new Date(weatherData.astro.sunset * 1000),
               Intl.DateTimeFormat().resolvedOptions().timeZone
             ),
             "HH:mm"
           )}
-        </p>
+        </p> */}
       </div>
     </div>
   </div>
