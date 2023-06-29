@@ -1,17 +1,27 @@
-.mainDiv {
-  margin: 100px auto;
+.weatherContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-.weatherContainer {
-  width: 800px;
-  background-color: rgb(231, 240, 249);
+
+.weatherCardContainer {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  background-color: rgb(242, 250, 252);
+  border-radius: 8px;
 }
 .header {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(135, 135, 135, 0.805);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .header p {
@@ -23,7 +33,11 @@
   flex-direction: row nowrap;
   justify-content: center;
   gap: 14px;
-  flex: 1;
+}
+.column {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
 
 #temp {
@@ -38,5 +52,5 @@
 .sunrise_sunset {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }

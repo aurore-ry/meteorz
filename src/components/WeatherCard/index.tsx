@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { utcToZonedTime, format } from "date-fns-tz";
 import setDefaultOptions from "date-fns/setDefaultOptions";
 import { fr } from "date-fns/locale";
 
@@ -15,13 +14,18 @@ interface WeatherCardProps {
 }
 
 export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => (
-  <div className="mainDiv">
-    <div className="weatherContainer">
+  <div className="weatherContainer">
+    <div className="weatherCardContainer">
       <div className="header">
         <p>{weatherData.location.name}</p>
       </div>
       <div className="row">
         <div className="temperature">
+          <p>{weatherData.current.condition.text}</p>
+          <img
+            src={weatherData.current.condition.icon}
+            alt="Current description of weather"
+          />
           <p>
             Temperature: <span id="temp">{weatherData.current.temp_c}°C</span>
           </p>
@@ -45,11 +49,11 @@ export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => (
         </div>
       </div>
       <div className="sunrise_sunset">
+        <p>Sunrise: {weatherData.forecast.forecastday[0].astro.sunrise}</p>
         <p>
-          Sunrise:
-          {weatherData.forecast.forecastday[0].astro.sunrise}
+          Sunset:
+          {weatherData.forecast.forecastday[0].astro.sunset}{" "}
         </p>
-        <p>Sunset: {weatherData.forecast.forecastday[0].astro.sunset}</p>
         <p>Moonrise: {weatherData.forecast.forecastday[0].astro.moonrise}</p>
         <p>
           Moon phase: {weatherData.forecast.forecastday[0].astro.moon_phase}

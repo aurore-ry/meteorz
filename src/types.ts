@@ -12,7 +12,7 @@ export interface WeatherDTO {
   current: {
     temp_c: number;
     temp_f: number;
-    conditions: {
+    condition: {
       text: string;
       icon: string;
       code: number;
@@ -35,4 +35,12 @@ export interface WeatherDTO {
       };
     }[];
   };
+}
+
+export interface SearchResultDTO {
+  lat: number;
+  lon: number;
+  name: string;
+  region: string;
+  country: string;
 }
