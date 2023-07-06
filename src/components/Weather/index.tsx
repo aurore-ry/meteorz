@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useEffect, FC } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import type { SearchResultDTO, WeatherDTO } from "../../types";
 
 import { Env } from "../../Env";
 import { WeatherCard } from "../WeatherCard";
+import "./index.css";
 
 export const Weather = () => {
   const [data, setData] = useState<null | WeatherDTO>(null);
@@ -42,11 +43,25 @@ export const Weather = () => {
       const res = await fetch(searchEndpoint);
       const json = (await res.json()) as SearchResultDTO[];
       console.log("json city: ", json);
-      setSearchResults(json);
+      if (searchValue === "") {
+        throw new Error("Please enter a location");
+      } else {
+        setSearchResults(json);
+      }
     } catch (err) {
       alert("Could not fetch weather...\n" + (err as Error).message);
     }
   }, [searchValue, setSearchResults]);
+
+  const onSearchResultClick = useCallback(
+    (result: SearchResultDTO) => {
+      fetchData({
+        lat: result.lat,
+        long: result.lon,
+      }).then(() => setSearchResults(null));
+    },
+    [fetchData, setSearchResults]
+  );
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -60,6 +75,7 @@ export const Weather = () => {
         alert("Could not get position:" + error.message);
       }
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (data == null) {
@@ -68,7 +84,7 @@ export const Weather = () => {
 
   return (
     <div>
-      <div className="search">
+      <div className="search" style={{ position: "relative" }}>
         <input
           type="text"
           value={searchValue}
@@ -77,25 +93,23 @@ export const Weather = () => {
           className="search_input"
         />
         <button className="city_searcher" onClick={onSearch}>
-          Search Location
+          Search
         </button>
-        <div>
-          {searchResults != null ? (
-            searchResults.map((result) => (
-              <button
+        {searchResults != null && (
+          <div className="search_suggestion" style={{ position: "absolute" }}>
+            {searchResults.map((result) => (
+              <div
                 key={[result.name, result.region, result.country].join(":")}
-                onClick={fetchData.bind(null, {
-                  lat: result.lat,
-                  long: result.lon,
-                })}
+                onClick={onSearchResultClick.bind(null, result)}
               >
-                {result.name} - {result.region} - {result.country}
-              </button>
-            ))
-          ) : (
-            <p>no search results yet</p>
-          )}
-        </div>
+                <span id="result">
+                  {result.name} {result.region} {result.country}
+                </span>
+                <div className="stroke"></div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <WeatherCard weatherData={data} />
     </div>
