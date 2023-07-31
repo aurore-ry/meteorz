@@ -4,10 +4,19 @@ import { fr } from "date-fns/locale";
 
 import { WeatherDTO } from "../../types";
 
+//import backgrounds
+import clear from "../../../public/img/clearly.jpeg";
+import mist from "../../../public/img/misty.png";
 import overcast from "../../../public/img/overcast.jpeg";
-import sunny from "../../../public/img/sunnysky.png";
-import thunder from "../../../public/img/thunder.jpg";
+import sunny from "../../../public/img/sunny.jpg";
+import thunder from "../../../public/img/thunder.png";
+import rainy from "../../../public/img/rainymoutain.jpg";
 import "./index.css";
+//import icons
+import Sunrise from "../../icons/sunrise";
+import Sunset from "../../icons/sunset";
+import Moonrise from "../../icons/moonrise";
+import Moonphase from "../../icons/moonphase";
 
 setDefaultOptions({
   locale: fr,
@@ -19,14 +28,18 @@ interface WeatherCardProps {
 
 const backgrounds: Record<WeatherDTO["current"]["condition"]["text"], string> =
   {
-    Overcast: overcast,
-    Sunny: sunny,
-    Cloudy: overcast,
-    Rain: "../../img/rain.jpg",
-    Mist: "../../img/blueskybluesky.jpg",
     Blizzard: overcast,
-    "Partly cloudy": overcast,
+    Cloudy: overcast,
+    Clear: clear,
+    Fog: mist,
+    "Light rain": rainy,
+    "Light rain shower": rainy,
+    Mist: mist,
     "Moderate or heavy rain with thunder": thunder,
+    Overcast: overcast,
+    "Partly cloudy": overcast,
+    Rain: rainy,
+    Sunny: sunny,
   };
 
 console.log("backgrounds: ", backgrounds);
@@ -52,15 +65,18 @@ export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => {
         }}
       >
         <div className="card">
-          <div className="header">
-            <p>{weatherData.location.name}</p>
-            <p>{weatherData.current.condition.text}</p>
+          <div className="card_content header">
+            <div className="column_header">
+              <p>{weatherData.location.name}</p>
+              <p>{weatherData.current.condition.text}</p>
+            </div>
             <img
+              id="weather_condition_icon"
               src={weatherData.current.condition.icon}
               alt="Current description of weather"
             />
           </div>
-          <div className="row">
+          <div className="card_content row">
             <div className="temperature">
               <p>
                 Temperature:{" "}
@@ -86,14 +102,14 @@ export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => {
             </div>
           </div>
           <div className="sunrise_sunset">
-            <p>Sunrise: {weatherData.forecast.forecastday[0].astro.sunrise}</p>
-            <p>Sunset: {weatherData.forecast.forecastday[0].astro.sunset} </p>
-            <p>
-              Moonrise: {weatherData.forecast.forecastday[0].astro.moonrise}
-            </p>
-            <p>
-              Moon phase: {weatherData.forecast.forecastday[0].astro.moon_phase}
-            </p>
+            <Sunrise />
+            <p>{weatherData.forecast.forecastday[0].astro.sunrise}</p>
+            <Sunset />
+            <p>{weatherData.forecast.forecastday[0].astro.sunset} </p>
+            <Moonrise />
+            <p>{weatherData.forecast.forecastday[0].astro.moonrise}</p>
+            <Moonphase />
+            <p>{weatherData.forecast.forecastday[0].astro.moon_phase}</p>
           </div>
         </div>
       </div>

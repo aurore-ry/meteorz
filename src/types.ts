@@ -14,14 +14,18 @@ export interface WeatherDTO {
     temp_f: number;
     condition: {
       text:
-        | "Sunny"
+        | "Blizzard"
+        | "Clear"
         | "Cloudy"
-        | "Rain"
-        | "Overcast"
-        | "Partly cloudy"
+        | "Fog"
+        | "Light rain"
+        | "Light rain shower"
         | "Mist"
         | "Moderate or heavy rain with thunder"
-        | "Blizzard";
+        | "Overcast"
+        | "Partly cloudy"
+        | "Sunny"
+        | "Rain";
       icon: string;
       code: number;
     };

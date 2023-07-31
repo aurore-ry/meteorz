@@ -1,7 +1,8 @@
 .search {
+  margin-top: 42px;
   display: flex;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
 }
 .search_input {
   height: 38px;
@@ -19,13 +20,17 @@
   color: black;
   font-weight: bolder;
 }
+
+.city_searcher {
+  cursor: pointer;
+}
 .search_suggestion {
   top: 38px;
   padding: 30px;
-  width: 638px;
+  width: auto 638px;
   height: 237px;
   background-color: rgba(118, 113, 113, 0.938);
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid rgb(123, 123, 132);
   color: antiquewhite;
   text-align: center;

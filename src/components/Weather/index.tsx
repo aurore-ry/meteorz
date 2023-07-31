@@ -5,6 +5,7 @@ import type { SearchResultDTO, WeatherDTO } from "../../types";
 import { Env } from "../../Env";
 import { WeatherCard } from "../WeatherCard";
 import "./index.css";
+import SearchIcon from "../../icons/searchIcon";
 
 export const Weather = () => {
   const [data, setData] = useState<null | WeatherDTO>(null);
@@ -92,9 +93,9 @@ export const Weather = () => {
           placeholder="Enter location"
           className="search_input"
         />
-        <button className="city_searcher" onClick={onSearch}>
-          Search
-        </button>
+        <div className="city_searcher" onClick={onSearch}>
+          <SearchIcon />
+        </div>
         {searchResults != null && (
           <div className="search_suggestion" style={{ position: "absolute" }}>
             {searchResults.map((result) => (
