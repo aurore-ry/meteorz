@@ -100,7 +100,7 @@ export const Weather = () => {
         return undefined;
       }
     );
-  }, []);
+  }, [fetchData]);
 
   if (data == null) {
     return <p>loading...</p>;
