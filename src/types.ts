@@ -21,9 +21,12 @@ export interface WeatherDTO {
         | "Light rain"
         | "Light rain shower"
         | "Mist"
+        | "Moderate rain"
+        | "Moderate rain at times"
         | "Moderate or heavy rain with thunder"
         | "Overcast"
         | "Partly cloudy"
+        | "Patchy rain possible"
         | "Sunny"
         | "Rain";
       icon: string;

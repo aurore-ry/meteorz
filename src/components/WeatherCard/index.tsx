@@ -5,12 +5,12 @@ import { fr } from "date-fns/locale";
 import { WeatherDTO } from "../../types";
 
 //import backgrounds
-import clear from "../../../public/img/clearly.jpeg";
-import mist from "../../../public/img/misty.png";
-import overcast from "../../../public/img/overcast.jpeg";
-import sunny from "../../../public/img/sunny.jpg";
-import thunder from "../../../public/img/thunder.png";
-import rainy from "../../../public/img/rainymoutain.jpg";
+import clear from "../../../public/img/clear.jpg";
+import mist from "../../../public/img/mist.jpg";
+import overcast from "../../../public/img/partly_cloudy.jpg";
+import sunny from "../../../public/img/clear.jpg";
+import thunder from "../../../public/img/thunder.jpg";
+import rainy from "../../../public/img/rain.jpg";
 import "./index.css";
 //import icons
 import Sunrise from "../../icons/sunrise";
@@ -35,9 +35,12 @@ const backgrounds: Record<WeatherDTO["current"]["condition"]["text"], string> =
     "Light rain": rainy,
     "Light rain shower": rainy,
     Mist: mist,
+    "Moderate rain": rainy,
+    "Moderate rain at times": rainy,
     "Moderate or heavy rain with thunder": thunder,
     Overcast: overcast,
     "Partly cloudy": overcast,
+    "Patchy rain possible": rainy,
     Rain: rainy,
     Sunny: sunny,
   };
@@ -78,22 +81,22 @@ export const WeatherCard: FC<WeatherCardProps> = ({ weatherData }) => {
           </div>
           <div className="card_content row">
             <div className="temperature">
-              <p>
-                Temperature:{" "}
-                <span id="temp">{weatherData.current.temp_c}°C</span>
-              </p>
-              <p>
-                Temperature min:{" "}
-                <span id="temp_min">
-                  {weatherData.forecast.forecastday[0].day.mintemp_c}°C
-                </span>
-              </p>
-              <p>
-                Temperature max:{" "}
-                <span id="temp_max">
-                  {weatherData.forecast.forecastday[0].day.maxtemp_c}°C
-                </span>
-              </p>
+              <div className="center">
+                <p>
+                  {" "}
+                  <span id="temp">{weatherData.current.temp_c}°C</span>
+                </p>
+                <p>
+                  {" "}
+                  <span id="temp_min">
+                    {weatherData.forecast.forecastday[0].day.mintemp_c}°C
+                  </span>
+                  <span id="slash">/</span>
+                  <span id="temp_max">
+                    {weatherData.forecast.forecastday[0].day.maxtemp_c}°C
+                  </span>
+                </p>
+              </div>
             </div>
             <div className="sky">
               <p>Clouds: {weatherData.current.cloud}%</p>

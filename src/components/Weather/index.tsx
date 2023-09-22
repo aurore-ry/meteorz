@@ -4,8 +4,14 @@ import type { SearchResultDTO, WeatherDTO } from "../../types";
 
 import { Env } from "../../Env";
 import { WeatherCard } from "../WeatherCard";
-import "./index.css";
 import SearchIcon from "../../icons/searchIcon";
+
+import "./index.css";
+
+const DEFAULT_POSITION = {
+  lat: 48.87,
+  long: 2.33,
+};
 
 export const Weather = () => {
   const [data, setData] = useState<null | WeatherDTO>(null);
@@ -73,10 +79,27 @@ export const Weather = () => {
         });
       },
       (error) => {
-        alert("Could not get position:" + error.message);
+        if (error instanceof GeolocationPositionError) {
+          const geolocationPositionErrorMessages: Record<number, string> = {
+            [GeolocationPositionError.PERMISSION_DENIED]:
+              "user declined permission to retrieve position",
+            [GeolocationPositionError.POSITION_UNAVAILABLE]:
+              "user agent could not retrieve position",
+            [GeolocationPositionError.TIMEOUT]:
+              "could not retrieve position, time out reached",
+          };
+
+          const errorMessage = geolocationPositionErrorMessages[error.code];
+          console.log(
+            `Could not get position: ${errorMessage}. Using default location instead.`
+          );
+
+          return fetchData(DEFAULT_POSITION);
+        }
+        alert(`Could not get position: ${(error as Error).message}`);
+        return undefined;
       }
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (data == null) {
