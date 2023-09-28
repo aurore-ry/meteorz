@@ -1,6 +1,6 @@
 .weatherContainer {
   width: 100%;
-  margin-top: 42px;
+  margin-top: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,14 +13,12 @@
   flex-flow: column;
   align-items: center;
   background: rgb(242, 250, 252);
-  border-radius: 8px;
   font-weight: bolder;
 }
 
 .card {
   width: 100%;
   background-color: rgba(194, 194, 194, 0.58);
-  border-radius: 8px;
 }
 .header {
   width: 100%;
@@ -28,9 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(135, 135, 135, 0.805);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  background-color: rgba(135, 135, 135, 0.573);
 }
 
 .column_header {
@@ -66,8 +62,15 @@
 }
 
 @media (min-width: 730px) {
+  .weatherContainer {
+    margin-top: 42px;
+  }
+  .weatherCardContainer {
+    border-radius: 8px;
+  }
   .card {
     height: 720px;
+    border-radius: 8px;
   }
   .card_content {
     padding: 36px;
@@ -83,6 +86,8 @@
   .header {
     max-height: 120px;
     box-sizing: border-box;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   .row {
@@ -114,6 +119,19 @@
   }
 }
 @media (max-width: 730px) {
+  .weatherContainer {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+  .weatherCardContainer {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+    background: rgb(242, 250, 252);
+    font-weight: bolder;
+  }
+
   .row {
     padding: 14px;
   }
