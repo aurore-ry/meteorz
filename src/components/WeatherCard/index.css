@@ -1,6 +1,5 @@
 .weatherContainer {
   width: 100%;
-  margin-top: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,11 +65,12 @@
     margin-top: 42px;
   }
   .weatherCardContainer {
+    width: 50%;
     border-radius: 8px;
   }
   .card {
-    height: 720px;
-    border-radius: 8px;
+    height: 50%;
+    border-radius: 4px;
   }
   .card_content {
     padding: 36px;
@@ -86,8 +86,8 @@
   .header {
     max-height: 120px;
     box-sizing: border-box;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
   }
 
   .row {
