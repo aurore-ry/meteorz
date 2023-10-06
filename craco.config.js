@@ -4,7 +4,7 @@ module.exports = {
   webpack: {
     plugins: [
       new Dotenv({
-        path: "./.env", // Path to .env file (this is the default)
+        "process.env.NODE_ENV": JSON.stringify("production"),
         safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
       }),
     ],
